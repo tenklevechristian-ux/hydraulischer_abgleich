@@ -1,0 +1,7 @@
+# Python dependencies for Hydraulischer Abgleich Analysis Tool
+
+# InfluxDB client for database queries
+influxdb>=5.3.1
+
+# HTTP requests for Discord webhook
+requests>=2.28.0
