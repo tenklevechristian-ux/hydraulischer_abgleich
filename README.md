@@ -214,6 +214,40 @@ pip install esphome
 
 #### Schritt 2: Erstkonfiguration erstellen
 
+####### Kommentar
+```
+frage: woher bekomme ich das "# OTA Updates ota:
+
+platform: esphome password: !secret ota_password" oder muss ich das passwort selbst vergeben?
+Das Passwort musst du selbst vergeben. Die !secret Syntax ist ein Verweis auf eine separate Datei.
+
+So funktioniert's:
+Erstelle eine secrets.yaml im gleichen Verzeichnis wie deine ESPHome-Konfiguration:
+# secrets.yaml
+wifi_ssid: "DeinWiFiName"
+wifi_password: "DeinWiFiPasswort"
+api_key: "generierter-api-key"
+ota_password: "dein-gewähltes-ota-passwort"
+Passwörter selbst wählen:
+ota_password: Beliebiges Passwort (z.B. "MeinOTA2024!")
+api_key: Wird beim ersten esphome run automatisch generiert, oder du generierst einen mit:
+openssl rand -base64 32
+Alternative ohne secrets.yaml:
+Du kannst die Werte auch direkt in die Config schreiben (nicht empfohlen für Git):
+
+ota:
+  - platform: esphome
+    password: "MeinOTAPasswort123"
+
+api:
+  encryption:
+    key: "dGVzdGtleWZvckFQSWVuY3J5cHRpb24xMjM0NTY3OA=="
+Warum OTA-Passwort?
+Verhindert, dass jemand im Netzwerk unerlaubt Firmware flashen kann
+Nach dem ersten USB-Flash kannst du Updates drahtlos (Over-The-Air) machen
+```
+####### Kommentar Ende
+
 ```yaml
 # heizkreis_og.yaml
 esphome:
